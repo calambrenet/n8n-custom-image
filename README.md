@@ -14,7 +14,7 @@ Custom N8N Docker image with video processing capabilities.
 
 ```bash
 # Pull the image
-docker pull ghcr.io/TU_USUARIO/n8n-custom-image:latest
+docker pull ghcr.io/calambrenet/n8n-custom-image:latest
 
 # Run locally
-docker run -p 5678:5678 ghcr.io/TU_USUARIO/n8n-custom-image:latest
+docker run -p 5678:5678 ghcr.io/calambrenet/n8n-custom-image:latest
