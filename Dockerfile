@@ -21,7 +21,8 @@ RUN pip3 install --upgrade --no-cache-dir --break-system-packages \
     pillow \
     requests \
     beautifulsoup4 \
-    lxml
+    lxml \
+    youtube-transcript-api
 
 # Crear directorio para archivos temporales
 RUN mkdir -p /tmp/n8n-media && \
@@ -35,6 +36,8 @@ RUN ffmpeg -version
 RUN yt-dlp --version
 RUN python3 -c "import moviepy; print('MoviePy OK')"
 RUN python3 -c "import PIL; print('Pillow OK')"
+RUN python3 -c "import requests; print('Requests OK')"
+RUN python3 -c "from youtube_transcript_api import YouTubeTranscriptApi; print('YouTube Transcript API OK')"
 
 LABEL org.opencontainers.image.source="https://github.com/TU_USUARIO/n8n-custom-image"
 LABEL org.opencontainers.image.description="N8N with yt-dlp, ffmpeg and video processing tools"
