@@ -3,21 +3,24 @@ FROM n8nio/n8n:latest
 # Cambiar a usuario root para instalar paquetes
 USER root
 
-# Actualizar e instalar dependencias
-RUN apt-get update && apt-get install -y \
+# Actualizar e instalar dependencias (Alpine Linux usa apk)
+RUN apk update && apk add --no-cache \
     ffmpeg \
     python3 \
-    python3-pip \
+    py3-pip \
     curl \
     wget \
     git \
-    && rm -rf /var/lib/apt/lists/*
+    bash \
+    build-base \
+    python3-dev
 
-# Instalar yt-dlp (versión más reciente)
-RUN pip3 install --upgrade yt-dlp
+# Crear enlace simbólico para python (por compatibilidad)
+RUN ln -sf python3 /usr/bin/python
 
-# Instalar herramientas adicionales para video
-RUN pip3 install \
+# Instalar yt-dlp
+RUN pip3 install --upgrade --no-cache-dir \
+    yt-dlp \
     whisper \
     moviepy \
     pillow
